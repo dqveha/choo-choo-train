@@ -8,4 +8,13 @@ describe('visits home page', {:type => :feature}) do
     visit('/')
     expect(page).to have_content("This is connected to the database train_system.")
   end
+describe('mgmt', {:type => :feature}) do
+  it('should visit the management portal page') do
+    visit('/mgmt')
+    expect(page).to have_content("Choo Choo Systems Management Portal")
+  end
+  it('should visit the management portal page') do
+    visit('/mgmt')
+    expect(page).to have_content("Choo Choo Systems Management Portal")
+  end
 end

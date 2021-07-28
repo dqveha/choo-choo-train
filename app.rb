@@ -38,11 +38,13 @@ get ('/trains/:id/edit') do
 end
 
 post ('/mgmt/city') do
-  
-  erb(:mgmt)
+  @city = City.new({:city => params[:city_name]})
+  @city.save()
+  redirect to('/mgmt')
 end
 
 post ('/mgmt/train') do
-  
-  erb(:mgmt)
+  @train = Train.new({:train => params[:train_name]})
+  @train.save()
+  redirect to('/mgmt')
 end
