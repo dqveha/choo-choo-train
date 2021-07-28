@@ -6,7 +6,7 @@ require "pg"
 require './lib/city'
 require './lib/train'
 
-DB = PG.connect({ dbname: 'train_system', host: 'db', user: 'postgres', password: 'password' })
+DB = PG.connect({ dbname: 'train_system', user: 'whain', password: 'epicodus' })
 
 get ('/') do
   @cities = City.all
@@ -47,4 +47,8 @@ post ('/mgmt/train') do
   @train = Train.new({:train => params[:train_name]})
   @train.save()
   redirect to('/mgmt')
+end
+
+post ('/mgmt/add-stop') do
+  @stop 
 end

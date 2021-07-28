@@ -1,41 +1,34 @@
 <h1>Choo Choo Systems Management Portal</h1>
+<hr>
 <div class="row">
   <h2>Add Stop</h2>
   <form action="/mgmt/stop" method="post">
     <div class="row">
       <div class="col-sm add-stop">
-      <h3>City</h3>
-        <div class="btn-group">
-          <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            City
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Separated link</a></li>
-          </ul>
-        </div>
-        <%# <select>
-          <option value="value">City</h3>
-        </select> %>
+        <h3>City</h3>
+        <% if @cities.any?%>
+          <select class="form-select">
+            <% @cities.each do |city| %>
+              <option value="<%= city.city %>"><%= city.city %></option>
+            <% end %>
+          </select>
+        <% else %>
+          <p>There are currently no available trains.</p>
+        <% end %>
       </div>
       <div class="col-sm add-stop">
         <h3>Train</h3>
-        <div class="btn-group">
-          <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            Train
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Separated link</a></li>
-          </ul>
-        </div>
-        <%# <select class="dropdown-menu">
-          <option class="dropwdown-item" value="value">Train</h3>
-        </select> %>
+        <% if @trains.any?%>
+          <select class="form-select">
+            <% @trains.each do |train| %>
+              <option value="<%= train.train %>"><%= train.train %></option>
+            <% end %>
+          </select>
+        <% else %>
+          <p>There are currently no available trains.</p>
+        <% end %>
       </div>
-      <div class="col-sm  add-stop">
+      <div class="col-sm add-stop">
         <h3>Arrival</h3>
         <div class="row">
           <div class="col">
@@ -48,7 +41,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm  add-stop">
+      <div class="col-sm add-stop">
         <h3>Departure</h3>
         <div class="row">
           <div class="col">
@@ -72,22 +65,31 @@
   <div class="col">
     <h2>Add City</h2>
     <form action="/mgmt/city" method="post">
-    <div class="form-group">
-      <label for="city_name">City name</label>
-      <input required id="city_name" name="city_name" class="form-control" type="text">
-    </div> 
+      <div class="form-group">
+        <label for="city_name">City name</label>
+        <input required id="city_name" name="city_name" class="form-control" type="text">
+      </div>
       <button type="submit"class="btn btn-primary mt-3">Add City</button>
     </form>
+    <div>
+      <hr>
+      <h3>Available Cities</h2>
+      <%= erb(:city)%>
+    </div>
   </div>
   <div class="col">
     <h2>Add Train</h2>
     <form action="/mgmt/train" method="post">
-    <div class="form-group">
-      <label for="train_name">Train name</label>
-      <input required id="train_name" name="train_name" class="form-control" type="text">
-    </div> 
+      <div class="form-group">
+        <label for="train_name">Train name</label>
+        <input required id="train_name" name="train_name" class="form-control" type="text">
+      </div>
       <button type="submit"class="btn btn-primary mt-3">Add Train</button>
     </form>
+    <div>
+      <hr>
+      <h3>Available Trains</h2>
+      <%= erb(:train)%>
+    </div>
   </div>
-  <% erb(:train)%>
 </div>
