@@ -1,0 +1,21 @@
+
+  <% if @city.trains != []%>
+    <ul>
+      <% @city.trains.each do |train| %>
+        <li><a href="/trains/<%= @train.id %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There are no trains listed for this city yet.</p>
+  <% end %>
+
+
+  <% if @city.trains != []%>
+    <ul>
+      <% @city.trains.each do |train| %>
+        <li><a href="/trains/<%= @train.id %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There are no trains listed for this city yet.</p>
+  <% end %>

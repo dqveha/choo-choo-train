@@ -1,0 +1,94 @@
+<script src="/js/combodate.js"></script>
+
+<h1>Choo Choo Systems Management Portal</h1>
+<div class="row">
+  <div class="col">
+    <h2>Add City</h2>
+    <form action="/mgmt/city" method="post">
+    <div class="form-group">
+      <label for="city_name">City name</label>
+      <input required id="city_name" name="city_name" class="form-control" type="text">
+    </div> 
+      <button type="submit"class="btn btn-primary mt-3">Add City</button>
+    </form>
+  </div>
+  <div class="col">
+    <h2>Add Train</h2>
+    <form action="/mgmt/train" method="post">
+    <div class="form-group">
+      <label for="train_name">Train name</label>
+      <input required id="train_name" name="train_name" class="form-control" type="text">
+    </div> 
+      <button type="submit"class="btn btn-primary mt-3">Add Train</button>
+    </form>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <h2>Add Stop</h2>
+  <form action="/mgmt/stop" method="post">
+    <div class="row">
+      <div class="col-sm add-stop">
+      <h3>City</h3>
+        <div class="btn-group">
+          <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            City
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Separated link</a></li>
+          </ul>
+        </div>
+        <%# <select>
+          <option value="value">City</h3>
+        </select> %>
+      </div>
+      <div class="col-sm add-stop">
+        <h3>Train</h3>
+        <div class="btn-group">
+          <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            Train
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Separated link</a></li>
+          </ul>
+        </div>
+        <%# <select>
+          <option value="value">Train</h3>
+        </select> %>
+      </div>
+      <div class="col-sm  add-stop">
+        <h3>Arrival</h3>
+        <div class="row">
+          <div class="col">
+            <label for="a_h">Hours</label>
+            <input required name="a_h" type="number" min="0" max="23" step="1" class="form-control">
+          </div>
+          <div class="col">
+            <label for="a_m">Minutes</label>
+            <input required name="a_m" type="number" min="0" max="59" step="1" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm  add-stop">
+        <h3>Departure</h3>
+        <div class="row">
+          <div class="col">
+            <label for="d_h">Hours</label>
+            <input required name="d_h" type="number" min="0" max="23" step="1" class="form-control">
+          </div>
+          <div class="col">
+            <label for="d_m">Minutes</label>
+            <input required name="d_m" type="number" min="0" max="59" step="1" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="col-sm add-stop">
+        <button type="submit" class="btn btn-primary">Add Stop</button>
+      </div>
+    </div>
+  </form>
+</div>
