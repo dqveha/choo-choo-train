@@ -51,6 +51,17 @@ class City
     DB.exec("DELETE FROM stops WHERE city_id = #{@id};")
   end
 
+  def self.find_by_train(train_id)
+    cities = []
+    returned_cities = DB.exec("SELECT * FROM cities WHERE train_id = #{train_id};")
+    returned_cities.each() do |city|
+      name = city.fetch("city")
+      id = city.fetch("id").to_i
+      cities.push(City.new({ :city => name, :train_id => city_id, :id => id }))
+    end
+    trains
+  end
+
   def trains
     Train.find_by_city(self.id)
   end

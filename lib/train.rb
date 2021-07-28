@@ -51,7 +51,7 @@ class Train
 
   def delete
     DB.exec("DELETE FROM trains WHERE id = #{@id};")
-    DB.exec("DELETE FROM stops WHERE train_id = #{@id};")
+    DB.exec("DELETE FROM  WHERE train_id = #{@id};")
   end
   
   def self.find_by_city(city_id)
@@ -63,6 +63,10 @@ class Train
       trains.push(Train.new({ :train => name, :city_id => city_id, :id => id }))
     end
     trains
+  end
+
+  def cities
+    City.find_by_train(self.id)
   end
 
 end
