@@ -1,0 +1,85 @@
+<h2>Edit Stop ID: <%= Stop.find(@stop.id).id %></h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Stop ID</th>
+      <th scope="col">Train</th>
+      <th scope="col">City</th>
+      <th scope="col">Arrival</th>
+      <th scope="col">Departure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%= @stop.id %></th>
+      <td><a href="/train/<%= Train.find(@stop.train_id).id %>"><%= Train.find(@stop.train_id).train %></a></td>
+      <td><a href="/cities/<%=City.find(@stop.city_id).id%>"><%= City.find(@stop.city_id).city %></a></td>
+      <td><%= @stop.arrival.chop.chop.chop %></td>
+      <td><%= @stop.departure.chop.chop.chop %></td>
+    </tr>
+  </tbody>
+</table>
+<div class="col">
+  <h3>Update Train</h3>
+  <form action="/mgmt/stops/<%= @stop.id %>" method="post">
+    <input name="_method" type="hidden" value="patch">
+    <div class="form-group">
+      <% if @trains.any?%>
+        <select id = "train_selection" name="train_selection" class="form-select">
+          <% @trains.each do |train| %>
+            <option name="train_selection" value="<%= train.id %>"><%= train.train %></option>
+          <% end %>
+        </select>
+      <% else %>
+        <p>There are currently no available trains.</p>
+      <% end %>
+    </div>
+    <button type="submit"class="btn btn-primary mt-3">Update Train</button>
+  </form>
+</div>
+<div class="col">
+  <h3>Update Stop</h3>
+  <form action="/mgmt/stops/<%= @stop.id %>" method="post">
+    <input name="_method" type="hidden" value="patch">
+    <div class="form-group">
+      <% if @trains.any?%>
+        <select id = "train_selection" name="train_selection" class="form-select">
+          <% @trains.each do |train| %>
+            <option name="train_selection" value="<%= train.id %>"><%= train.train %></option>
+          <% end %>
+        </select>
+      <% else %>
+        <p>There are currently no available stops.</p>
+      <% end %>
+    </div>
+    <button type="submit"class="btn btn-primary mt-3">Update Stop</button>
+  </form>
+</div>
+<div class="row dotted">
+  <div class="col-sm add-stop">
+    <h3>Arrival</h3>
+    <div class="row">
+      <div class="col">
+        <label for="a_h">Hours</label>
+        <input required name="a_h" type="number" min="0" max="23" step="1" class="form-control">
+      </div>
+      <div class="col">
+        <label for="a_m">Minutes</label>
+        <input required name="a_m" type="number" min="0" max="59" step="1" class="form-control">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm add-stop">
+    <h3>Departure</h3>
+    <div class="row">
+      <div class="col">
+        <label for="d_h">Hours</label>
+        <input required name="d_h" type="number" min="0" max="23" step="1" class="form-control">
+      </div>
+      <div class="col">
+        <label for="d_m">Minutes</label>
+        <input required name="d_m" type="number" min="0" max="59" step="1" class="form-control">
+      </div>
+    </div>
+  </div>
+</div>
