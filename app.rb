@@ -16,6 +16,34 @@ get ("/") do
   erb(:index)
 end
 
+get ("/sort/stop") do
+  @cities = City.all
+  @trains = Train.all
+  @stops = Stop.all
+  erb(:index)
+end
+
+get ("/sort/train") do
+  @cities = City.all
+  @trains = Train.all
+  @stops = Stop.sort_train
+  erb(:index)
+end
+
+get ("/sort/arrival") do
+  @cities = City.all
+  @trains = Train.all
+  @stops = Stop.sort_arrival
+  erb(:index)
+end
+
+get ("/sort/departure") do
+  @cities = City.all
+  @trains = Train.all
+  @stops = Stop.sort_departure
+  erb(:index)
+end
+
 get ("/mgmt") do
   @trains = Train.all
   @cities = City.all

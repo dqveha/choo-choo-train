@@ -14,15 +14,15 @@
       <% @stops.each do |stop| %>
         <tr>
           <th scope="row"><%= stop.id %></th>
-          <td><a href="/train/<%= Train.find(stop.train_id).id %>"><%= Train.find(stop.train_id).train %></a></td>
+          <td><a href="/trains/<%= Train.find(stop.train_id).id %>"><%= Train.find(stop.train_id).train %></a></td>
           <td><a href="/cities/<%=City.find(stop.city_id).id%>"><%= City.find(stop.city_id).city %></a></td>
           <td><%= stop.arrival.chop.chop.chop %></td>
           <td><%= stop.departure.chop.chop.chop %></td>
           <td><a href="/mgmt/edit/stop/<%= stop.id %>">Edit</td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>There are currently no stops to display.</p>
-<% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>There are currently no stops to display.</p>
+  <% end %>

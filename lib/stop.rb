@@ -85,4 +85,59 @@ class Stop
   def trains
     Train.find_by_stop(self.id)
   end
+
+  def self.sort_train
+    returned_trains = DB.exec("SELECT train, stops.id, train_id, city_id, arrival, departure FROM stops JOIN trains ON (trains.id = stops.train_id) ORDER BY train ASC;")
+    stops = []
+    returned_trains.each() do |stop|
+      city_id = stop.fetch("city_id").to_i
+      train_id = stop.fetch("train_id").to_i
+      arrival = stop.fetch("arrival")
+      departure = stop.fetch("departure")
+      id = stop.fetch("id").to_i
+      stops.push(Stop.new({ :id => id, :city_id => city_id, :train_id => train_id, :arrival => arrival, :departure => departure }))
+    end
+    stops
+  end
+
+  def self.sort_arrival
+    returned_stops = DB.exec("SELECT * FROM stops ORDER BY arrival ASC;")
+    stops = []
+    returned_stops.each() do |stop|
+      city_id = stop.fetch("city_id").to_i
+      train_id = stop.fetch("train_id").to_i
+      arrival = stop.fetch("arrival")
+      departure = stop.fetch("departure")
+      id = stop.fetch("id").to_i
+      stops.push(Stop.new({ :id => id, :city_id => city_id, :train_id => train_id, :arrival => arrival, :departure => departure }))
+    end
+    stops
+  end
+
+  def self.sort_departure
+    returned_stops = DB.exec("SELECT * FROM stops ORDER BY departure ASC;")
+    stops = []
+    returned_stops.each() do |stop|
+      city_id = stop.fetch("city_id").to_i
+      train_id = stop.fetch("train_id").to_i
+      arrival = stop.fetch("arrival")
+      departure = stop.fetch("departure")
+      id = stop.fetch("id").to_i
+      stops.push(Stop.new({ :id => id, :city_id => city_id, :train_id => train_id, :arrival => arrival, :departure => departure }))
+    end
+    stops
+  end
 end
+
+# SELECT column1, column2, ...
+# FROM table_name
+# ORDER BY column1, column2, ... ASC|DESC;
+
+# people = {
+#   :fred => 23,
+#   :joan => 18,
+#   :pete => 54
+# }
+
+# people.sort_by { |name, age| age }
+#   # => [[:joan, 18], [:fred, 23], [:pete, 54]]

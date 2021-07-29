@@ -2,25 +2,25 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Stop ID</th>
-        <th scope="col">Train</th>
-        <th scope="col">City</th>
-        <th scope="col">Arrival</th>
-        <th scope="col">Departure</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @stops.each do |stop| %>
-        <tr>
-          <th scope="row"><%= stop.id %></th>
-          <td><a href="/train/<%= Train.find(stop.train_id).id %>"><%= Train.find(stop.train_id).train %></a></td>
-          <td><a href="/cities/<%=City.find(stop.city_id).id%>"><%= City.find(stop.city_id).city %></a></td>
-          <td><%= stop.arrival.chop.chop.chop %></td>
-          <td><%= stop.departure.chop.chop.chop %></td>
+        <th scope="col"><a href="/sort/stop">Stop ID</a></th>
+        <th scope="col"><a href="/sort/train">Train</a></th>
+          <th scope="col">City</th>
+          <th scope="col"><a href="/sort/arrival">Arrival</a></th>
+          <th scope="col"><a href="/sort/departure">Departure</a></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>There are currently no stops to display.</p>
-<% end %>
+      </thead>
+      <tbody>
+        <% @stops.each do |stop| %>
+          <tr>
+            <th scope="row"><%= stop.id %></th>
+            <td><a href="/trains/<%= Train.find(stop.train_id).id %>"><%= Train.find(stop.train_id).train %></a></td>
+            <td><a href="/cities/<%=City.find(stop.city_id).id%>"><%= City.find(stop.city_id).city %></a></td>
+            <td><%= stop.arrival.chop.chop.chop %></td>
+            <td><%= stop.departure.chop.chop.chop %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>There are currently no stops to display.</p>
+  <% end %>

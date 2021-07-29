@@ -1,6 +1,6 @@
 body {
   background: #303030;
-  background-image: url("https://images.pexels.com/photos/258510/pexels-photo-258510.jpeg");
+  background-image: url("https://images.pexels.com/photos/533630/pexels-photo-533630.jpeg");
   background-position: top center;
   background-repeat:no-repeat;
 }
@@ -48,8 +48,13 @@ blockquote {
 .dotted {
   border: 1px dotted #303030;
   background-color: #eee;
+  margin:auto;
 }
 
 .delete {
   background-color: rgba(255,0,0,.1);
+}
+
+#add-stop {
+  margin:auto;
 }
