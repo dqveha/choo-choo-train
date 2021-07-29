@@ -1,0 +1,9 @@
+<% if @stops.any? %>
+  <ul>
+    <% @stops.each do |stop| %>
+      <li><a href="/stops/<%= stop.id %>"><%= stop.id %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are currently no stops to display.</p>
+<% end %>

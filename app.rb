@@ -5,6 +5,7 @@ require 'pry'
 require "pg"
 require './lib/city'
 require './lib/train'
+require './lib/stop'
 
 DB = PG.connect({ dbname: 'train_system', user: 'whain', password: 'epicodus' })
 
@@ -17,19 +18,20 @@ end
 get ('/mgmt') do
   @trains = Train.all
   @cities = City.all
+  # @stops = Stops.all
   erb(:mgmt)
 end
 
 get ('/trains/:id') do
   @train = Train.find(params[:id].to_i())
-  erb(:train)
+  erb(:trains)
   #see the cities the train stops at
   #As a train rider, I want to view a train, so that I can see the cities where it stops.
 end
 
 get ('/trains/:id/cities/:city_id') do
   @city = City.find(params[:city_id].to_i())
-  erb(:city)
+  erb(:cities)
   #see all trains that passes through the city
 end
 
@@ -50,5 +52,11 @@ post ('/mgmt/train') do
 end
 
 post ('/mgmt/add-stop') do
-  @stop 
+  city_id = params[:city_selection]
+  train_id = params[:train_selection]
+  arrival = ("%02d" % params[:a_h].to_s) + ":" + ("%02d" % params[:a_m].to_s)
+  departure = ("%02d" % params[:d_h.to_s]) + ":" + ("%02d" % params[:d_m].to_s)
+  @stop = Stop.new({:city_id => city_id, :train_id => train_id, :arrival => arrival, :departure => departure})
+  @stop.save
+  redirect to('/mgmt')
 end
