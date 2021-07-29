@@ -12,13 +12,14 @@ DB = PG.connect({ dbname: 'train_system', user: 'whain', password: 'epicodus' })
 get ('/') do
   @cities = City.all
   @trains = Train.all
+  @stops = Stop.all
   erb(:index)
 end
 
 get ('/mgmt') do
   @trains = Train.all
   @cities = City.all
-  # @stops = Stops.all
+  @stops = Stop.all
   erb(:mgmt)
 end
 
