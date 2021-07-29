@@ -47,13 +47,28 @@ class Stop
   end
 
   def update(attributes)
-    @stop = name
-    DB.exec("UPDATE stops SET stop = '#{@stop}' WHERE id = #{@id};")
+    column = ""
+    value = ""
+    if attributes.keys.include?("city_selection")
+      column = "city_id"
+      value = attributes.fetch("city_selection")
+    elsif attributes.keys.include?("train_selection")
+      column = "train_id"
+      value = attributes.fetch("train_selection")
+    elsif attributes.keys.include?("a_h")
+      value = ("%02d" % attributes.fetch("a_h").to_s) + ":" + ("%02d" % attributes.fetch("a_m").to_s)
+      column = "arrival"
+    elsif attributes.keys.include?("d_h")
+      value = ("%02d" % attributes.fetch("d_h").to_s) + ":" + ("%02d" % attributes.fetch("d_m").to_s)
+      column = "departure"
+    else
+      puts "error"
+    end
+    DB.exec("UPDATE stops SET #{column} = '#{value}' WHERE id = #{@id};")
   end
 
   def delete
     DB.exec("DELETE FROM stops WHERE id = #{@id};")
-    # DB.exec("DELETE FROM stops WHERE stop_id = #{@id};")
   end
 
   def self.find_by_train(train_id)

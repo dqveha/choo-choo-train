@@ -116,5 +116,28 @@ get ("/mgmt/edit/stop/:id") do
   @trains = Train.all
   @cities = City.all
   erb(:update_stop)
+end
 
+patch ("/mgmt/edit/stop/:id/city") do
+  @stop = Stop.find(params[:id].to_i)
+  @stop.update(params)
+  redirect to("/mgmt")
+end
+
+patch ("/mgmt/edit/stop/:id/train") do
+  @stop = Stop.find(params[:id].to_i)
+  @stop.update(params)
+  redirect to("/mgmt")
+end
+
+patch ("/mgmt/edit/stop/:id/arrival") do
+  @stop = Stop.find(params[:id].to_i)
+  @stop.update(params)
+  redirect to("/mgmt")
+end
+
+patch ("/mgmt/edit/stop/:id/departure") do
+  @stop = Stop.find(params[:id].to_i)
+  @stop.update(params)
+  redirect to("/mgmt")
 end
