@@ -100,6 +100,20 @@ class Stop
     stops
   end
 
+  def self.sort_city
+    returned_cities = DB.exec("SELECT city, stops.id, train_id, city_id, arrival, departure FROM stops JOIN cities ON (cities.id = stops.city_id) ORDER BY city ASC;")
+    stops = []
+    returned_cities.each() do |stop|
+      city_id = stop.fetch("city_id").to_i
+      train_id = stop.fetch("train_id").to_i
+      arrival = stop.fetch("arrival")
+      departure = stop.fetch("departure")
+      id = stop.fetch("id").to_i
+      stops.push(Stop.new({ :id => id, :city_id => city_id, :train_id => train_id, :arrival => arrival, :departure => departure }))
+    end
+    stops
+  end
+
   def self.sort_arrival
     returned_stops = DB.exec("SELECT * FROM stops ORDER BY arrival ASC;")
     stops = []

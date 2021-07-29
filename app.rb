@@ -30,6 +30,13 @@ get ("/sort/train") do
   erb(:index)
 end
 
+get ("/sort/city") do
+  @cities = City.all
+  @trains = Train.all
+  @stops = Stop.sort_city
+  erb(:index)
+end
+
 get ("/sort/arrival") do
   @cities = City.all
   @trains = Train.all
