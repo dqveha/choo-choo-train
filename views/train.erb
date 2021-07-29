@@ -1,0 +1,27 @@
+<% if @train.any? %>
+  <h2><%=  Train.find(@train[0].train_id).train %></h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Stop ID</th>
+        <th scope="col">Train</th>
+        <th scope="col">City</th>
+        <th scope="col">Arrival</th>
+        <th scope="col">Departure</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @train.each do |train| %>
+        <tr>
+          <th scope="row"><%= train.id %></th>
+          <td><%= Train.find(train.train_id).train %></td>
+          <td><%= City.find(train.city_id).city %></td>
+          <td><%= train.arrival.chop.chop.chop %></td>
+          <td><%= train.departure.chop.chop.chop %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>There are currently no trains to display.</p>
+<% end %>

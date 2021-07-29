@@ -53,7 +53,7 @@ class Stop
 
   def delete
     DB.exec("DELETE FROM stops WHERE id = #{@id};")
-    DB.exec("DELETE FROM stops WHERE stop_id = #{@id};")
+    # DB.exec("DELETE FROM stops WHERE stop_id = #{@id};")
   end
 
   def self.find_by_train(train_id)

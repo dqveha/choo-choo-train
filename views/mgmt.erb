@@ -63,6 +63,8 @@
             <p>There are currently no available trains.</p>
           <% end %>
         </div>
+      </div>
+      <div class="row dotted">
         <div class="col-sm add-stop">
           <h3>Arrival</h3>
           <div class="row">
@@ -90,12 +92,14 @@
           </div>
         </div>
       </div>
-      <div class="row mt-3">
+      <div class="row mt-3 mb-3">
         <button type="submit" class="btn btn-primary">Add Stop</button>
       </div>
     </form>
+    <hr>
     <h3>Available Stops</h3>
-    <%= erb(:stops)%>
+    <%= erb(:stops_table)%>
   </div>
 </div>
 <hr>
+<%= erb(:mgmt_delete) %>

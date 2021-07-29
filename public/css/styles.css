@@ -6,9 +6,13 @@ body {
 }
 
 .container {
+  padding:1rem;
+}
+
+.main-container {
   background-color: rgba(255, 255, 255, 0.85);
-  padding: 1rem;
   margin: 1rem auto;
+  padding:0;
 }
 
 ol,
@@ -38,6 +42,10 @@ blockquote {
 }
 
 .add-stop{
-  border: solid black 1px;
   padding-bottom:1rem;
+}
+
+.dotted {
+  border: 1px dotted #303030;
+  background-color: #eee;
 }

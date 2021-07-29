@@ -1,0 +1,11 @@
+<% if @stops.any? %>
+  <ul>
+    <% @stops.each do |stop| %>
+      <li><a href="/stops/<%= stop.id %>">Stop ID: <%= stop.id %> | <%= Train.find(stop.train_id).train %> | <%= City.find(stop.city_id).city %> | Arrival: <%= stop.arrival.chop.chop.chop %> | Departure: <%= stop.departure.chop.chop.chop %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are currently no stops to display.</p>
+<% end %>
+
+
