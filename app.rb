@@ -86,6 +86,13 @@ get ("/trains") do
   erb(:trains)
 end
 
+get ("/mgmt/stops/:id") do
+  @stop = Stop.find(params[:id].to_i)
+  @trains = Train.all
+  @cities = City.all
+  erb(:stop_update)
+end
+
 delete ("/mgmt/delete/train") do
   @train = Train.find(params[:train_selection].to_i)
   @train.delete()
@@ -95,5 +102,11 @@ end
 delete ("/mgmt/delete/city") do
   @city = City.find(params[:city_selection].to_i)
   @city.delete()
+  redirect to("/mgmt")
+end
+
+delete ("/mgmt/delete/stop") do
+  @stop = Stop.find(params[:stop_selection].to_i)
+  @stop.delete()
   redirect to("/mgmt")
 end

@@ -1,61 +1,66 @@
-<h2>Removal</h2>
-<p class="alert alert-warning" role="alert">Removing a city or train will also remove all stops associated with the removed city or train.</p>
-<div class="row">
-  <div class="col-md">
-    <div class="row">
-      <div class="col">
-        <h2>Remove City</h2>
-        <form action="/mgmt/delete/city" method="post">
-          <input name="_method" type="hidden" value="delete">
-          <div class="form-group">
-            <% if @cities.any?%>
-              <select id = "city_selection" name="city_selection" class="form-select">
-                <% @cities.each do |city| %>
-                  <option name="<%= city.city %>" value="<%= city.id %>"><%= city.city %></option>
-                <% end %>
-              </select>
-            <% else %>
-              <p>There are currently no available trains.</p>
-            <% end %>
-          </div>
-          <button type="submit"class="btn btn-primary mt-3">Remove City</button>
-        </form>
-      </div>
-      <div class="col">
-        <h2>Remove Train</h2>
-        <form action="/mgmt/delete/train" method="post">
-          <input name="_method" type="hidden" value="delete">
-          <div class="form-group">
-            <% if @trains.any?%>
-              <select id = "train_selection" name="train_selection" class="form-select">
-                <% @trains.each do |train| %>
-                  <option name="train_selection" value="<%= train.id %>"><%= train.train %></option>
-                <% end %>
-              </select>
-            <% else %>
-              <p>There are currently no available trains.</p>
-            <% end %>
-          </div>
-          <button type="submit"class="btn btn-primary mt-3">Remove Train</button>
-        </form>
-      </div>
-      <div class="col">
-        <h2>Remove Stop</h2>
-        <form action="/mgmt/train" method="post">
-          <input name="_method" type="hidden" value="delete">
-          <div class="form-group">
-            <% if @trains.any?%>
-              <select id = "train_selection" name="train_selection" class="form-select">
-                <% @trains.each do |train| %>
-                  <option name="train_selection" value="<%= train.id %>"><%= train.train %></option>
-                <% end %>
-              </select>
-            <% else %>
-              <p>There are currently no available trains.</p>
-            <% end %>
-          </div>
-          <button type="submit"class="btn btn-primary mt-3">Remove Stop</button>
-        </form>
+<h2>Removal Station</h2>
+<button class="btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#delete" aria-expanded="false" aria-controls="delete">
+  Access Removal Station
+</button>
+<div class="collapse" id="delete">
+  <div class="row">
+    <div class="col-md">
+      <p class="alert alert-warning mt-3 mb-3" role="alert">Removing a city or train will also remove all stops associated with the removed city or train.</p>
+      <div class="row">
+        <div class="col">
+          <h3>Remove City</h3>
+          <form action="/mgmt/delete/city" method="post">
+            <input name="_method" type="hidden" value="delete">
+            <div class="form-group">
+              <% if @cities.any?%>
+                <select id = "city_selection" name="city_selection" class="form-select">
+                  <% @cities.each do |city| %>
+                    <option name="<%= city.city %>" value="<%= city.id %>"><%= city.city %></option>
+                  <% end %>
+                </select>
+              <% else %>
+                <p>There are currently no available trains.</p>
+              <% end %>
+            </div>
+            <button type="submit"class="btn btn-danger mt-3">Remove City</button>
+          </form>
+        </div>
+        <div class="col">
+          <h3>Remove Train</h3>
+          <form action="/mgmt/delete/train" method="post">
+            <input name="_method" type="hidden" value="delete">
+            <div class="form-group">
+              <% if @trains.any?%>
+                <select id = "train_selection" name="train_selection" class="form-select">
+                  <% @trains.each do |train| %>
+                    <option name="train_selection" value="<%= train.id %>"><%= train.train %></option>
+                  <% end %>
+                </select>
+              <% else %>
+                <p>There are currently no available trains.</p>
+              <% end %>
+            </div>
+            <button type="submit"class="btn btn-danger mt-3">Remove Train</button>
+          </form>
+        </div>
+        <div class="col">
+          <h3>Remove Stop</h3>
+          <form action="/mgmt/delete/stop" method="post">
+            <input name="_method" type="hidden" value="delete">
+            <div class="form-group">
+              <% if @stops.any? %>
+                <select id = "stop_selection" name="stop_selection" class="form-select">
+                  <% @stops.each do |stop| %>
+                    <option name="stop_selection" value="<%= stop.id %>"><%= stop.id %></option>
+                  <% end %>
+                </select>
+              <% else %>
+                <p>There are currently no available stops.</p>
+              <% end %>
+            </div>
+            <button type="submit"class="btn btn-danger mt-3">Remove Stop</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
